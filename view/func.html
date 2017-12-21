@@ -1,0 +1,102 @@
+<div>
+	<style>
+		.warp{
+			height: .3rem;
+		}
+		.ulist{
+			display: flex;
+			position: absolute;
+			width: 100%;
+		}
+		.ulist li{
+			flex:  1;
+			text-align: center;
+			line-height: .3rem;
+			background: #fff;
+		}
+		.mark{
+			width: 100%;
+			box-sizing: border-box;
+			height:  auto;
+			position: absolute;
+			top: .75rem;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			display: none;
+			background: rgba(0,0,0,0.7);
+		}
+		.shoplist{
+			display: flex;
+			padding: .1rem .15rem;
+		}
+		.s-left{
+			width: 1.2rem;
+			height: .8rem;
+		}
+		.s-left img{
+			width: 1.2rem;
+			height: .8rem;
+		}
+		.s-right{
+			margin-left: .15rem;
+		}
+		.olist{
+			background: #fff;
+		}
+		.olist li{
+			line-height: .5rem;
+			padding-left:  .2rem;
+			border-bottom: 1px solid #ccc;
+		}
+		.cont{}
+	</style>
+	<div>
+		<div class="warp">
+			<ul class="ulist">
+				<li ng-repeat="item in list"  ng-click="fn($index,item)">{{item}}
+				</li>
+			</ul>
+			<div class="mark">
+				<ol class="olist">
+					<li ng-repeat="fli in flist" ng-click="fn1(fli.type)">{{fli.name}}</li>
+				</ol>
+			</div>
+			<div class="mark">
+				<ol class="olist">
+					<li  ng-click="fn1()">附近商家</li>
+				</ol>
+			</div>
+			<div class="mark">
+				<ol class="olist">
+					<li ng-repeat="or in order" ng-click="fn1(or.type)">{{or.name}}</li>
+				</ol>
+			</div>
+			<div class="mark">
+				<ol class="olist">
+					<li ng-click="fn1()">筛选</li>
+				</ol>
+			</div>
+		</div>
+		<div class="cont">
+			<div class="shoplist" ng-repeat="item in shopList | filter : fliTer | orderBy : orderB">
+				<div class="s-left">
+					<img ng-src="{{item.image}}" alt="">
+				</div>
+				<div class="s-right">
+					<h3>{{item.name}}</h3>
+					<div class="add">
+						<p>
+							<span class="addr">{{item.address}}</span>
+							<span class="addl">{{item.popularity}}</span>
+						</p>
+						<p>{{item.type}}</p>
+						<p>
+							<span>好评： {{item.evaluate}}</span> <span>人气：{{item.popularity}}</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
